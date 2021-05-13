@@ -39,6 +39,7 @@ Dans l'optique d'un backend minimaliste, avec un unique endpoint qui renverrait 
 Il ne sera pas prévu de tests frontend a priori, des tests visuels de l'application suffiront à vérifier/montrer que l'application répond bien aux consignes.
 
 _Cette stratégie est bien sûr susceptible d'évoluer au fur et à mesure, notamment en fonction des contraintes de temps..._
+Le fichier "Etat_des_lieux.md" devrait permettre, en suivant ses modifications grâce à l'historique des commits, de suivre l'évolution de la compréhension du pb, l'avancement du développement, les différentes techniques/stratégies essayées, etc.
 
 ___
 
