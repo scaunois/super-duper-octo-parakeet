@@ -45,6 +45,16 @@ Bootstrap a été ajouté pour faciliter la mise en forme du contenu. L'applicat
 
 ___
 
+# Etat des lieux 5
+
+Le frontend permet d'afficher une main de cartes, affichées à l'aide d'images <img/>. Un bouton est disponible pour générer une nouvelle main en appelant la backend, et un champ de saisie permet éventuellement de choisir la taille (si n'envoie rien, le backend renverra une main de 10 par défaut).
+Reste à faire : le tri. IL va falloir choisir si on fait le tri côté frontend, comme prévu au départ, ou si on le fait côté backend. Le faire côté backend serait pas mal vu que ce serait plus facile à tester unitairement dans l'état actuel de mes connaissances. L'inconvénient de faire ça est qu'il faut gérer soit :
+* le stockage d'une main en base de données ou en session, et utiliser l'id de la main pour appeler un deuxième endpoint côté backend qui récupèrerait cette main et la renverrait triée
+* ne rien stocker, mais être capable depuis le front de renvoyer la main qui vient d'être générée par le backend, pour qu'il la trie et la renvoie
+Ca revient plus ou moins au même, mais si le front renvoie la liste complète au back, il n'y a pas à gérer de persistence des données...
+
+___
+
 # Nice to have
 
 Partie à compléter (éventuellement) à la fin du projet avec des idées d'améliorations, si elles surgissent ! On pourra y lister des fonctionnalités supplémentaires, des tests à rajouter pour améliorer la couverture du code si jugée trop faible, des idées de refactorisation si nécessaire mais non fait par manque de temps...

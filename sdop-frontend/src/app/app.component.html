@@ -8,7 +8,7 @@
         <h2>Test technique Atexo - Afficher et trier une main de cartes à jouer</h2>
       </div>
       <div class="col-4">
-        <img src="../assets/image/blue-parakeet.jpeg" alt="Une perruche bleue"/>
+        <img src="../assets/images/blue-parakeet.jpeg" alt="Une perruche bleue"/>
       </div>
     </div>
   </div>
@@ -16,8 +16,21 @@
   <hr/>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-10 mx-auto px-3 py-2 cards-hand-display"> 
+      <div class="row mb-2">
+        <div class="col-12">Votre main de <strong>{{ cardsHand.length }}</strong> cartes :</div>
+      </div>
+
+      <div class="row row-cols-10 mb-2">
+        <div class="col-auto mb-2" *ngFor="let card of cardsHand">
+          <div class="card"><img class="mx-auto" [src]="getImage(card)" [alt]="card.value + ' ' + card.color" /></div>
+        </div>
+      </div>
       
+      <div class="row justify-content-start my-2">
+        <div class="col-3"><input class="form-control form-control-sm d-inline" type="number" [(ngModel)]="wishedHandSize" placeholder="Nombre de cartes souhaité" /></div>
+        <div class="col-3"><button class="btn btn-sm btn-primary" (click)="getNewHand()">Distribuer une nouvelle main</button></div>
+      </div>
     </div>
   </div>
 

@@ -5,6 +5,7 @@ import io.scaunois.sdopbackend.rest.service.CardService;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -25,6 +26,7 @@ public class CardController {
   }
 
   @GetMapping("random-cards-hand")
+  @CrossOrigin(origins = "*")
   public List<CardDto> getRandomHand(@RequestParam(required = false) Integer handSize) {
     try {
       return cardService.getRandomHand(handSize);
