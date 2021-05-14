@@ -38,6 +38,13 @@ Une gestion des erreurs a été rajoutée au niveau du endpoint via la classe Re
 
 ___
 
+# Etat des lieux 4
+
+Le projet contient un répertoire pour la partie frontend, contenant une application Angular 12 minimale, fonctionnelle. Cela a été testé avec 'ng serve' et un contrôle visuel de l'unique page de l'application dans un navigateur.
+Bootstrap a été ajouté pour faciliter la mise en forme du contenu. L'application affiche pour l'instant seulement un titre et une jolie image de perruche pour illustrer le nom du projet généré aléatoirement par Github.
+
+___
+
 # Nice to have
 
 Partie à compléter (éventuellement) à la fin du projet avec des idées d'améliorations, si elles surgissent ! On pourra y lister des fonctionnalités supplémentaires, des tests à rajouter pour améliorer la couverture du code si jugée trop faible, des idées de refactorisation si nécessaire mais non fait par manque de temps...
