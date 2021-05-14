@@ -26,7 +26,15 @@ La méthode getRandomHand() ne fait rien pour l'instant, sauf lever une Exceptio
 * Si on spécifie un paramètre invalide (< 0 ou > au nombre de cartes dans un paquet, par ex. 52 dans notre cas), la méthode doit lever une IllegalArgumentException
 
 Aucun test du controller n'a été réalisé. Cela pourrait être fait, mais pour respecter les contraintes de temps, on se concentre sur le "coeur du métier", à savoir la méthode permettant de récupérer une main aléatoire de 10 cartes.
-Comme aucun test frontend n'est prévu (pour des raisons de temps et de connaissances actuelles en frameworks de tests frontend), on placera peut-être la fonction de tri côté backend afin de la tester avec JUNit, même si dans l'idée originale, il était plutôt envisager de faire le tri côté frontend, une fois la main récupérée depuis le serveur.
+Comme aucun test frontend n'est prévu (pour des raisons de temps et de connaissances en frameworks de tests frontend), on placera peut-être la fonction de tri côté backend afin de la tester avec JUnit, même si dans l'idée originale, il était plutôt envisager de faire le tri côté frontend, une fois la main récupérée depuis le serveur.
+
+___
+
+# Etat des lieux 3
+
+La méthode getRandomHand() est maintenant implémentée. Les TU passent tous (la couleur verte est bien agréable à l'oeil !).
+Le controller a été testé via Postman afin de vérifier qu'il renvoyait bien une liste JSON de cartes, correspondant à la taille de main passée en paramètre (@RequestParam).
+Une gestion des erreurs a été rajoutée au niveau du endpoint via la classe ResponseStatusException de Spring, afin d'afficher le code HTTP et le message d'erreur adéquats.
 
 ___
 

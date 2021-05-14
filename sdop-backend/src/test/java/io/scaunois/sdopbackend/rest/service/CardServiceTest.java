@@ -28,7 +28,7 @@ class CardServiceTest {
 
     // then
     assertThat(cardsHand).hasSize(MiscConstants.DEFAULT_HAND_SIZE);
-    assertTrue(allCardsAreDifferent(cardsHand));
+    assertTrue(allCardsAreDifferent(cardsHand), "We should not have the same card twice in the hand");
   }
 
   @DisplayName("Should return a hand of distinct, randomly choosen cards of size N when calling getRandomHand() method with handSize=N and N is positive and <= the cards deck size")
@@ -41,7 +41,7 @@ class CardServiceTest {
 
     // then
     assertThat(cardsHand).hasSize(wishedHandSize);
-    assertTrue(allCardsAreDifferent(cardsHand));
+    assertTrue(allCardsAreDifferent(cardsHand), "We should not have the same card twice in the hand");
   }
 
   @DisplayName("Should throw an Exception when calling getRandomHand() method with a negative parameter")
@@ -52,7 +52,7 @@ class CardServiceTest {
       List<CardDto> cardsHand = cardService.getRandomHand(invalidWishedHandSize);
     })
     .isInstanceOf(IllegalArgumentException.class)
-    .hasMessage("Could not get random cards hand for size: " + invalidWishedHandSize);
+    .hasMessage("Could not get cards hand of size: " + invalidWishedHandSize);
   }
 
   @DisplayName("Should throw an Exception when calling getRandomHand() method with a parameter > cards deck size")
@@ -63,7 +63,7 @@ class CardServiceTest {
       List<CardDto> cardsHand = cardService.getRandomHand(invalidWishedHandSize);
     })
       .isInstanceOf(IllegalArgumentException.class)
-      .hasMessage("Could not get random cards hand for size: " + invalidWishedHandSize);
+      .hasMessage("Could not get cards hand of size: " + invalidWishedHandSize);
   }
 
   /**
@@ -71,6 +71,6 @@ class CardServiceTest {
    * (because when you are playing cards without cheating you should not be able to have the same card twice in your hand!)
    */
   private boolean allCardsAreDifferent(List<CardDto> cardsHand) {
-    return cardsHand.size() != cardsHand.stream().distinct().count();
+    return cardsHand.size() == cardsHand.stream().distinct().count();
   }
 }
