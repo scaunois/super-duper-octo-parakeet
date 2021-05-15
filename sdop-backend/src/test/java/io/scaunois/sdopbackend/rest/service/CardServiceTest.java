@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static io.scaunois.sdopbackend.shared.constants.MiscConstants.CARDS_DECK_MAX_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -31,16 +32,38 @@ class CardServiceTest {
     assertTrue(allCardsAreDifferent(cardsHand), "We should not have the same card twice in the hand");
   }
 
-  @DisplayName("Should return a hand of distinct, randomly choosen cards of size N when calling getRandomHand() method with handSize=N and N is positive and <= the cards deck size")
+  @DisplayName("Should return a hand of 5 distinct, randomly choosen cards when calling getRandomHand() method with handSize=5")
   @Test
-  void test_getRandomHand_withExplicitAndValidHandSize() {
+  void test_getRandomHand_withExplicitAndValidHandSize_smallSize() {
     // when
-    // this test should work for any value between 1 and "the whole deck" so we pick a random value as a parameter to call the method
-    int wishedHandSize = RandomUtils.nextInt(1, MiscConstants.CARDS_DECK_MAX_SIZE + 1);
+    int wishedHandSize = 5;
     List<CardDto> cardsHand = cardService.getRandomHand(wishedHandSize);
 
     // then
     assertThat(cardsHand).hasSize(wishedHandSize);
+    assertTrue(allCardsAreDifferent(cardsHand), "We should not have the same card twice in the hand");
+  }
+
+  @DisplayName("Should return a hand of 50 distinct, randomly choosen cards when calling getRandomHand() method with handSize=50")
+  @Test
+  void test_getRandomHand_withExplicitAndValidHandSize_bigSize() {
+    // when
+    int wishedHandSize = 50;
+    List<CardDto> cardsHand = cardService.getRandomHand(wishedHandSize);
+
+    // then
+    assertThat(cardsHand).hasSize(wishedHandSize);
+    assertTrue(allCardsAreDifferent(cardsHand), "We should not have the same card twice in the hand");
+  }
+
+  @DisplayName("Should return the whole deck when calling getRandomHand() method with handSize=max deck size")
+  @Test
+  void test_getRandomHand_withExplicitAndValidHandSize_wholeDeckRequested() {
+    // when
+    List<CardDto> cardsHand = cardService.getRandomHand(CARDS_DECK_MAX_SIZE);
+
+    // then
+    assertThat(cardsHand).hasSize(CARDS_DECK_MAX_SIZE);
     assertTrue(allCardsAreDifferent(cardsHand), "We should not have the same card twice in the hand");
   }
 
@@ -58,7 +81,7 @@ class CardServiceTest {
   @DisplayName("Should throw an Exception when calling getRandomHand() method with a parameter > cards deck size")
   @Test
   void test_getRandomHand_withInvalidHandSize_TooHigh() {
-    int invalidWishedHandSize = MiscConstants.CARDS_DECK_MAX_SIZE + RandomUtils.nextInt(); // random value > cards deck size
+    int invalidWishedHandSize = CARDS_DECK_MAX_SIZE + RandomUtils.nextInt(); // random value > cards deck size
     assertThatThrownBy(() -> {
       List<CardDto> cardsHand = cardService.getRandomHand(invalidWishedHandSize);
     })

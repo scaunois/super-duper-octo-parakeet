@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static io.scaunois.sdopbackend.shared.constants.MiscConstants.CARDS_DECK_MAX_SIZE;
+
 @Service
 @Slf4j
 public class CardService {
@@ -32,7 +34,7 @@ public class CardService {
       wishedSize = MiscConstants.DEFAULT_HAND_SIZE;
     }
 
-    if (wishedSize < 0 || wishedSize > MiscConstants.CARDS_DECK_MAX_SIZE) {
+    if (wishedSize < 0 || wishedSize > CARDS_DECK_MAX_SIZE) {
       throw new IllegalArgumentException("Could not get cards hand of size: " + wishedSize);
     }
 
@@ -47,9 +49,7 @@ public class CardService {
   }
 
   private Card pickRandomCardAndRemoveItFromDeck(List<Card> cardDeck) {
-    CardColor randomColor = CardColor.fromInt(RandomUtils.nextInt(0, CardColor.values().length)).orElseThrow();
-    CardValue randomValue  = CardValue.fromInt(RandomUtils.nextInt(0, CardValue.values().length)).orElseThrow();
-    Card card = new Card(randomColor, randomValue);
+    Card card = cardDeck.get(RandomUtils.nextInt(0, cardDeck.size()));
 
     // remove the card of the deck (it should not be picked twice)
     removeCardOfDeck(card, cardDeck);
@@ -69,7 +69,7 @@ public class CardService {
       }
     }
 
-    assert deck.size() == MiscConstants.CARDS_DECK_MAX_SIZE;
+    assert deck.size() == CARDS_DECK_MAX_SIZE;
     return deck;
 
     // the above code could be replaced by the following stream loop, but a nested "for" loop is more intuitive

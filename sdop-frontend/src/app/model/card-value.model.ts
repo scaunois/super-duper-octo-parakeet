@@ -16,6 +16,11 @@ export enum CardValue {
 }
 
 export namespace CardValue {
+
+     export function ordinalValue(cardValue: CardValue): number {
+        return Object.keys(CardValue).indexOf(cardValue);
+    }
+
     /**
      * Returns the string name corresponding to the value of the card (for example 'ace', '2', '3', 'king',...)
      */

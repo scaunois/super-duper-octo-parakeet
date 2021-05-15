@@ -55,6 +55,16 @@ Ca revient plus ou moins au même, mais si le front renvoie la liste complète a
 
 ___
 
+# Etat des lieux 6
+
+C$oté frontend, un bouton a été ajouté sur la page afin de permettre de trier par ordre croissant de couleur, et au sein de chaque couleur, par ordre croissant de valeur. Le tri est fait côté Angular, pas d'appel au backend pour ça.
+Une fonction de tri/recherche aurait dû plutôt être faire côté backend, mais pour un simple tri d'une main de cartes (où on sait qu'on ne va pas recevoir des centaines/milliers d'éléments à trier), il s'agit plutôt d'une modalité d'affichage, qui doit donc être gérée par le frontend.
+Une vérification visuelle avait permis de détecter la présence de doublons dans la main, ce qui n'avait pas été détecté lors des tests unitaires côté backend (à cause d'une erreur d'implémentation de la vérification de l'unicité de chaque carte)
+=> les TU ont été corrigés afin de détecter l'erreur, et ils étaient bien rouge.
+=> la méthode a été corrigée, et les TU relancés, ils sont passés au vert.
+
+___
+
 # Nice to have
 
 Partie à compléter (éventuellement) à la fin du projet avec des idées d'améliorations, si elles surgissent ! On pourra y lister des fonctionnalités supplémentaires, des tests à rajouter pour améliorer la couverture du code si jugée trop faible, des idées de refactorisation si nécessaire mais non fait par manque de temps...
