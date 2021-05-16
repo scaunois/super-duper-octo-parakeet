@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class CardController {
 
   private final CardService cardService;
@@ -26,7 +27,6 @@ public class CardController {
   }
 
   @GetMapping("random-cards-hand")
-  @CrossOrigin(origins = "*")
   public List<CardDto> getRandomHand(@RequestParam(required = false) Integer handSize) {
     try {
       return cardService.getRandomHand(handSize);
