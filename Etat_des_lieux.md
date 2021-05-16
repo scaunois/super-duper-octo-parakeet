@@ -65,7 +65,26 @@ Une vérification visuelle avait permis de détecter la présence de doublons da
 
 ___
 
+# Dernier état des lieux
+
+Le projet est fonctionnel et répond aux besoins de l'exercice. Il peut être exécuté et testé sur n'importe quel environnement respectant les prérequis (Java et Angular) grâce aux explications du fichier "DOcumentation.md".
+Il pourrait néanmoins être encore amélioré, mais cela nécessiterait d'y consacrer encore beaucoup de temps... Des idées possibles d'amélioration sont décrites dans la section "Nice to have" ci-dessous.
+
+___
+
 # Nice to have
 
 Partie à compléter (éventuellement) à la fin du projet avec des idées d'améliorations, si elles surgissent ! On pourra y lister des fonctionnalités supplémentaires, des tests à rajouter pour améliorer la couverture du code si jugée trop faible, des idées de refactorisation si nécessaire mais non fait par manque de temps...
 * PITest (https://pitest.org/) : utile pour faire des tests de mutation et améliorer la pertinence des TU, non ajouté pour le moment, mais utile pour s'assurer que les TU testent réellement le fonctionnement du code, et non simplement sa "couverture", i.e. "passent dans toutes les branches du code", mais ne vérifient pas que le comportement est correct.
+* Tests unitaires côté frontend : non faits par manque de connaissances/temps, mais on pourrait créer des TU Karma.
+* Gestion de la sécurité :
+	* autoriser seulement des utilisateurs identifiés à se connecter à l'application (il faudrait ajouter une page d'identification et gérer des comptes en base de données)
+	* restreindre les appels au backend en n'autorisant que des requêtes authentifiées (via une clé d'API par exemple) (pour rappel les appels sont déjà uniquement possibles depuis l'URL http://localhost:4200 qui est l'URL de l'application frontend, mais dans l'état actuel, rien n'empêche à un utilisateur de l'application d'exécuter du JS appelant à loisir l'API backend)
+* Amélioration du style graphique de l'application frontend : aucun commentaire plus précis n'est requis je pense, le style minimaliste parle de lui-même, je ne suis pas un designer...)
+* Gestion plus fine des erreurs côté front : afficher différents messages d'erreur à l'utilisateur selon le type d'erreur reçu du back
+* Gestion plus générique des erreurs côté back : pour l'instant les erreurs sont gérées dans l'unique controller, si on devait créer d'autres controllers, il serait préférable de gérer les Exception de façon globale/unifiée, avec un ResponseEntityExceptionHandler annoté par @ControllerAdvice
+* Côté front, proposer de trier par ordre croissant/décroissant, et par couleur puis valeur OU par valeur puis couleur au choix.
+* Proposer de gérer plusieurs types de paquets de cartes (par exmeple rajouter un paquet de 52 cartes mais avec les jokers, ou un paquet de taille différente, par exemple un paquet de cartes allant seulement de As à 10, un paquet de cartes de tarot, etc...) (il faudrait des modifications front/back)
+* Gérer différemment le tri : on pourrait le faire côté backend avec un endpoint prenant en parmamètre la taille souhaitée pour la main PLUS un paramètre optionnel indiquant le tri souhaité
+* ... (possibilités infinies)
+
